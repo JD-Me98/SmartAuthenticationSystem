@@ -1,6 +1,8 @@
 package com.megatechs.SmartAuthenticationSystem.controller;
 
+import com.megatechs.SmartAuthenticationSystem.models.DTOs.AuthResponse;
 import com.megatechs.SmartAuthenticationSystem.models.DTOs.LoginRequest;
+import com.megatechs.SmartAuthenticationSystem.models.DTOs.RefreshTokenRequest;
 import com.megatechs.SmartAuthenticationSystem.models.DTOs.RegisterRequest;
 import com.megatechs.SmartAuthenticationSystem.services.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +25,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return authService.login(request);
     }
+    @PostMapping("/refresh-token")
+    public ResponseEntity<AuthResponse> refreshToken(@RequestBody RefreshTokenRequest request) {
+        return authService.refreshToken(request);
+    }
+
 }
